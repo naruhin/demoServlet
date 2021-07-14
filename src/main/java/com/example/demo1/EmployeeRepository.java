@@ -7,17 +7,6 @@ import java.util.List;
 
 public class EmployeeRepository {
 
-   /* public static void main(String[] args) {
-        getConnection();
-
-        Employee employee = new Employee();
-
-        employee.setName("oleg");
-        employee.setEmail(" ");
-        employee.setCountry(" ");
-        save(employee);
-    }*/
-
     public static Connection getConnection() {
         Connection connection = null;
         String url = "jdbc:postgresql://localhost:5432/employee";
@@ -43,12 +32,14 @@ public class EmployeeRepository {
         int status = 0;
         try {
             Connection connection = EmployeeRepository.getConnection();
-            PreparedStatement ps = connection.prepareStatement("insert into users(name,surname,email,country,phonenumber) values (?,?,?,?,?)");
+            PreparedStatement ps = connection.prepareStatement("insert into users(name,surname,birthdate,specialty,country,phonenumber,email) values (?,?,?,?,?,?,?)");
             ps.setString(1, employee.getName());
             ps.setString(2, employee.getSurname());
-            ps.setString(3, employee.getEmail());
-            ps.setString(4, employee.getCountry());
-            ps.setString(5, employee.getPhoneNumber());
+            ps.setString(3, employee.getBirthdate());
+            ps.setString(4, employee.getSpecialty());
+            ps.setString(5, employee.getCountry());
+            ps.setString(6, employee.getPhoneNumber());
+            ps.setString(7, employee.getEmail());
 
             status = ps.executeUpdate();
             connection.close();
@@ -65,15 +56,18 @@ public class EmployeeRepository {
 
         try {
             Connection connection = EmployeeRepository.getConnection();
-            PreparedStatement ps = connection.prepareStatement("update users set name=?,surname=?,email=?,country=?,phonenumber=? where id=?");
-            ps.setString(1, employee.getName());
-            ps.setString(2, employee.getSurname());
-            ps.setString(3, employee.getEmail());
-            ps.setString(4, employee.getCountry());
-            ps.setString(5, employee.getPhoneNumber());
-            ps.setInt(6, employee.getId());
+            try (PreparedStatement ps = connection.prepareStatement("update users set name=?,surname=?,birthdate=?,specialty=?,country=?,phonenumber=?,email=? where id=?")) {
+                ps.setString(1, employee.getName());
+                ps.setString(2, employee.getSurname());
+                ps.setString(3, employee.getBirthdate());
+                ps.setString(4, employee.getSpecialty());
+                ps.setString(5, employee.getCountry());
+                ps.setString(6, employee.getPhoneNumber());
+                ps.setString(7, employee.getEmail());
+                ps.setInt(8, employee.getId());
 
-            status = ps.executeUpdate();
+                status = ps.executeUpdate();
+            }
             connection.close();
 
         } catch (SQLException e) {
@@ -150,17 +144,21 @@ public class EmployeeRepository {
         employee.setId(rs.getInt(1));
         employee.setName(rs.getString(2));
         employee.setSurname(rs.getString(3));
-        employee.setEmail(rs.getString(4));
-        employee.setCountry(rs.getString(5));
-        employee.setPhoneNumber(rs.getString(6));
+        employee.setBirthdate(rs.getString(4));
+        employee.setSpecialty(rs.getString(5));
+        employee.setCountry(rs.getString(6));
+        employee.setPhoneNumber(rs.getString(7));
+        employee.setEmail(rs.getString(8));
     }
 
 
     public static void setEmployeeByRequest(Employee employee, HttpServletRequest request){
         employee.setName(request.getParameter("name"));
         employee.setSurname(request.getParameter("surname"));
-        employee.setEmail(request.getParameter("email"));
+        employee.setBirthdate(request.getParameter("birthdate"));
+        employee.setSpecialty(request.getParameter("specialty"));
         employee.setCountry(request.getParameter("country"));
         employee.setPhoneNumber(request.getParameter("phonenumber"));
+        employee.setEmail(request.getParameter("email"));
     }
 }
