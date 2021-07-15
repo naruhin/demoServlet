@@ -5,9 +5,27 @@ public class Employee {
     private int id;
     private String name;
     private String surname;
-    private String email;
+    private String birthdate;
+    public String specialty;
     private String country;
     private String phoneNumber;
+    private String email;
+
+    public String getSpecialty() {
+        return specialty;
+    }
+
+    public void setSpecialty(String specialty) {
+        this.specialty = specialty;
+    }
+
+    public String getBirthdate() {
+        return birthdate;
+    }
+
+    public void setBirthdate(String birthdate) {
+        this.birthdate = birthdate;
+    }
 
     public String getSurname() { return surname; }
 
@@ -51,12 +69,13 @@ public class Employee {
 
     @Override
     public String toString() {
-        return "Employee [" +
-                "name ='" + name + '\'' +
-                ", surname ='" + surname + '\'' +
-                ", email ='" + email + '\'' +
-                ", country ='" + country + '\'' +
-                ", phoneNumber ='" + phoneNumber + '\'' +
-                "]\n";
+        return "Employee: " + name +
+                " " + surname +
+                "; birthdate: " + birthdate +
+                "; specialty: " + specialty +
+                "; email: " + email +
+                "; country: " + country +
+                "; phoneNumber: " + phoneNumber +
+                ";";
     }
 }
