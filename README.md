@@ -27,12 +27,16 @@ mvn org.wildfly.plugins:wildfly-maven-plugin:2.0.2.Final:deploy
 ```bash
 create table users
 (
-    id      serial not null
+    id           serial not null
         constraint users_pk
             primary key,
-    name    varchar,
-    email   varchar,
-    country varchar
+    first_name   varchar,
+    second_name  varchar,
+    birthdate    varchar,
+    speciality   varchar,
+    phone_number varchar,
+    country      varchar,
+    email        varchar
 );
 
 alter table users
