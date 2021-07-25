@@ -6,18 +6,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EmployeeRepository {
+//    public static void main(String[] args) {
+//        getConnection();
+//    }
 
     public static Connection getConnection() {
         Connection connection = null;
-        String url = "jdbc:postgresql://localhost:5432/employee";
-        String user = "postgres";
-        String password = "postgres";
+        String url = "jdbc:mysql://localhost:3306/employee";
+        String user = "root";
+        String password = "root";
 
         try {
-            //Class.forName("org.postgresql.Driver"); For Tomcat Local Server
             connection = DriverManager.getConnection(url, user, password);
             if (connection != null) {
-                System.out.println("Connected to the PostgreSQL server successfully.");
+                System.out.println("Connected to the MySQL server successfully.");
             } else {
                 System.out.println("Failed to make connection!");
             }
@@ -146,8 +148,8 @@ public class EmployeeRepository {
         employee.setSecondName(rs.getString(3));
         employee.setBirthdate(rs.getString(4));
         employee.setSpeciality(rs.getString(5));
-        employee.setPhoneNumber(rs.getString(6));
-        employee.setCountry(rs.getString(7));
+        employee.setCountry(rs.getString(6));
+        employee.setPhoneNumber(rs.getString(7));
         employee.setEmail(rs.getString(8));
     }
 

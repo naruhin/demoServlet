@@ -23,22 +23,21 @@ mvn org.wildfly.plugins:wildfly-maven-plugin:2.0.2.Final:deploy
 ```
 4. Скачать и установить клиент запросов Postman
    
-5. Скачать и установить базу данных PostgreSQL
+Коллекция запросов: https://www.getpostman.com/collections/b138f38f94df025bc9c7
+   
+5. Скачать и установить базу данных MySQL
 ```bash
+USE employee;
 create table users
 (
-    id           serial not null
-        constraint users_pk
-            primary key,
-    first_name   varchar,
-    second_name  varchar,
-    birthdate    varchar,
-    speciality   varchar,
-    phone_number varchar,
-    country      varchar,
-    email        varchar
+    id           int auto_increment
+        primary key,
+    first_name   varchar(50) null,
+    second_name  varchar(50) null,
+    birthdate    varchar(50) null,
+    speciality   varchar(50) null,
+    country      varchar(50) null,
+    phone_number varchar(50) null,
+    email        varchar(50) null
 );
-
-alter table users
-    owner to postgres;
 ```
