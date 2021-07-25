@@ -3,20 +3,20 @@ package com.example.demo1;
 public class Employee {
 
     private int id;
-    private String name;
-    private String surname;
+    private String firstName;
+    private String secondName;
     private String birthdate;
-    public String specialty;
+    public String speciality;
     private String country;
     private String phoneNumber;
     private String email;
 
-    public String getSpecialty() {
-        return specialty;
+    public String getSpeciality() {
+        return speciality;
     }
 
-    public void setSpecialty(String specialty) {
-        this.specialty = specialty;
+    public void setSpeciality(String speciality) {
+        this.speciality = speciality;
     }
 
     public String getBirthdate() {
@@ -27,9 +27,9 @@ public class Employee {
         this.birthdate = birthdate;
     }
 
-    public String getSurname() { return surname; }
+    public String getSecondName() { return secondName; }
 
-    public void setSurname(String surname) { this.surname = surname; }
+    public void setSecondName(String secondName) { this.secondName = secondName; }
 
     public String getPhoneNumber() { return phoneNumber; }
 
@@ -43,12 +43,12 @@ public class Employee {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     public String getEmail() {
@@ -69,13 +69,13 @@ public class Employee {
 
     @Override
     public String toString() {
-        return "Employee: " + name +
-                " " + surname +
+        return "Employee:" +
+                " first_name: " + firstName +
+                "; second_name: " + secondName +
                 "; birthdate: " + birthdate +
-                "; specialty: " + specialty +
+                "; speciality: " + speciality +
                 "; email: " + email +
                 "; country: " + country +
-                "; phoneNumber: " + phoneNumber +
-                ";";
+                "; phone_number: " + phoneNumber + '\n';
     }
 }

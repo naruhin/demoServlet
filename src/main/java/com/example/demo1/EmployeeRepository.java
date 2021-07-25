@@ -32,11 +32,11 @@ public class EmployeeRepository {
         int status = 0;
         try {
             Connection connection = EmployeeRepository.getConnection();
-            PreparedStatement ps = connection.prepareStatement("insert into users(name,surname,birthdate,specialty,country,phonenumber,email) values (?,?,?,?,?,?,?)");
-            ps.setString(1, employee.getName());
-            ps.setString(2, employee.getSurname());
+            PreparedStatement ps = connection.prepareStatement("insert into users(first_name, second_name,birthdate,speciality,country,phone_number,email) values (?,?,?,?,?,?,?)");
+            ps.setString(1, employee.getFirstName());
+            ps.setString(2, employee.getSecondName());
             ps.setString(3, employee.getBirthdate());
-            ps.setString(4, employee.getSpecialty());
+            ps.setString(4, employee.getSpeciality());
             ps.setString(5, employee.getCountry());
             ps.setString(6, employee.getPhoneNumber());
             ps.setString(7, employee.getEmail());
@@ -56,11 +56,11 @@ public class EmployeeRepository {
 
         try {
             Connection connection = EmployeeRepository.getConnection();
-            try (PreparedStatement ps = connection.prepareStatement("update users set name=?,surname=?,birthdate=?,specialty=?,country=?,phonenumber=?,email=? where id=?")) {
-                ps.setString(1, employee.getName());
-                ps.setString(2, employee.getSurname());
+            try (PreparedStatement ps = connection.prepareStatement("update users set first_name=?,second_name=?,birthdate=?,speciality=?,country=?,phone_number=?,email=? where id=?")) {
+                ps.setString(1, employee.getFirstName());
+                ps.setString(2, employee.getSecondName());
                 ps.setString(3, employee.getBirthdate());
-                ps.setString(4, employee.getSpecialty());
+                ps.setString(4, employee.getSpeciality());
                 ps.setString(5, employee.getCountry());
                 ps.setString(6, employee.getPhoneNumber());
                 ps.setString(7, employee.getEmail());
@@ -142,23 +142,23 @@ public class EmployeeRepository {
 
     private static void setEmployee(Employee employee, ResultSet rs) throws SQLException {
         employee.setId(rs.getInt(1));
-        employee.setName(rs.getString(2));
-        employee.setSurname(rs.getString(3));
+        employee.setFirstName(rs.getString(2));
+        employee.setSecondName(rs.getString(3));
         employee.setBirthdate(rs.getString(4));
-        employee.setSpecialty(rs.getString(5));
-        employee.setCountry(rs.getString(6));
-        employee.setPhoneNumber(rs.getString(7));
+        employee.setSpeciality(rs.getString(5));
+        employee.setPhoneNumber(rs.getString(6));
+        employee.setCountry(rs.getString(7));
         employee.setEmail(rs.getString(8));
     }
 
 
     public static void setEmployeeByRequest(Employee employee, HttpServletRequest request){
-        employee.setName(request.getParameter("name"));
-        employee.setSurname(request.getParameter("surname"));
+        employee.setFirstName(request.getParameter("first_name"));
+        employee.setSecondName(request.getParameter("second_name"));
         employee.setBirthdate(request.getParameter("birthdate"));
-        employee.setSpecialty(request.getParameter("specialty"));
+        employee.setSpeciality(request.getParameter("speciality"));
         employee.setCountry(request.getParameter("country"));
-        employee.setPhoneNumber(request.getParameter("phonenumber"));
+        employee.setPhoneNumber(request.getParameter("phone_number"));
         employee.setEmail(request.getParameter("email"));
     }
 }
